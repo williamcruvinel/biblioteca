@@ -1,5 +1,5 @@
 import { httpError } from "../errors/HttpError";
-import { ICreateUser, IUserRepository } from "../interfaces/IUser";
+import { ICreateUser, IUpdateUser, IUserRepository } from "../interfaces/IUser";
 
 export class UserService{
   constructor(private readonly userRepository: IUserRepository) {}
@@ -20,16 +20,17 @@ export class UserService{
     return newUser
   }
 
-  async updateUser(userId: number, params: Partial<ICreateUser> ){
+  async updateUser(userId: number, params: Partial<IUpdateUser> ){
+    const userExists = await this.userRepository.findById(userId)
+    if (!userExists) throw new httpError(404, "Falha ao atualizar, usuário não encontrado");
     const updateUser = await this.userRepository.updateById(userId, params)
-    if (!updateUser) throw new httpError(404, "Usuário não foi encontrado");
     return updateUser
   }
 
-  async deleteUser(id: number) {
-    const userExists = await this.userRepository.findById(id)
-    if (!userExists) throw new httpError(404, "Usuário não foi encontrado");
-    const deletedUser = await this.userRepository.deleteById(id)
+  async deleteUser(userId: number) {
+    const userExists = await this.userRepository.findById(userId)
+    if (!userExists) throw new httpError(404, "Falha ao deletar, usuário não encontrado");
+    const deletedUser = await this.userRepository.deleteById(userId)
     return deletedUser
   }
 }
