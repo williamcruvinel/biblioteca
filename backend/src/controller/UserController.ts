@@ -19,7 +19,7 @@ export class UserController {
     try {
       const body = CreateUserShemas.parse(req.body);
       const newUser = await this.userService.createUser(body);
-      res.status(201).json(newUser);
+      res.json(newUser);
     }
     catch (error) {
       next(error);

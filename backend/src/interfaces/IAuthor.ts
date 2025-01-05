@@ -19,4 +19,5 @@ export interface IAuthorsRepository {
   create: (attributes: ICreateAuthor) => Promise<Author>
   updateById: (id: number, attributes: Partial<ICreateAuthor>) => Promise<Author | null>
   deleteById: (id: number) => Promise<Author | null>
+  findByName: (name: string) => Promise<Author | null>
 }

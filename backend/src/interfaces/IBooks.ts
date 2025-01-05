@@ -39,6 +39,7 @@ export interface IBookRepository {
   create: (attributes: ICreateBook) => Promise<Book>
   updateById: (id: number, attributes: Partial<ICreateBook>) => Promise<Book | null>
   deleteById: (id: number) => Promise<Book | null>
+  findByTitle: (title: string) => Promise<Book | null>
 
   // addReservation:(userId: number, reservationId: number) => Promise<Reservation>
   // removeReservation:(userId: number, reservationId: number) => Promise<Reservation>

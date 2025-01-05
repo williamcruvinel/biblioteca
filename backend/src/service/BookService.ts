@@ -16,8 +16,12 @@ export class BookService{
   }
 
   async createBook(params: ICreateBook){
-    const newBook = await this.bookReposittory.create(params)
-    return newBook
+    const bookExists = await this.bookReposittory.findByTitle(params.title)
+    if(!bookExists?.title){
+      const newBook = await this.bookReposittory.create(params)
+      return newBook
+    }
+    throw new httpError(404, "Livro já cadastrado")
   }
 
   async updateBook(bookId: number, params: Partial<IUpadateBook>){

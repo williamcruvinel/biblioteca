@@ -9,7 +9,24 @@ export class BookRepository implements IBookRepository {
 
   async findById(id: number): Promise<Book | null>{
     return prisma.book.findUnique({
-      where: {id}
+      where: {id},
+      include:{
+        author:{
+          select:{
+            name: true
+          }
+        },
+        reserve: {
+          select: {
+            user: {
+              select:{
+                name:true,
+                email: true
+              }
+            }
+          }
+        }
+      }
     })
   }
 
@@ -28,9 +45,15 @@ export class BookRepository implements IBookRepository {
 
   async deleteById(id: number): Promise<Book | null>{
     return prisma.book.delete({
-      where:{id}
+      where:{id},
     })
   }
+
+  async findByTitle(title: string): Promise<Book | null> {
+      return prisma.book.findFirst({
+        where: { title },
+      });
+    }
 
   // async addReservation(bookId: number, reserveId: number): Promise<Book>{
   //   return prisma.book.update({

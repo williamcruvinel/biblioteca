@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { bookController, userController } from "./container";
+import { authorController, bookController, userController } from "./container";
 
 const router = Router()
 
@@ -15,6 +15,11 @@ router.post("/books", bookController.create)
 router.put("/books/:id", bookController.update)
 router.delete("/books/:id", bookController.delete)
 
+router.get("/authors", authorController.index)
+router.get("/authors/:id", authorController.show)
+router.post("/authors", authorController.create)
+router.put("/authors/:id", authorController.update)
+router.delete("/authors/:id", authorController.delete)
 
 //rota de teste
 router.get("/status", async (req, res, next) => {
