@@ -49,7 +49,7 @@ export class AuthorController {
     try {
       const authorId = +req.params.inde
       const deleteAuthor = await this.authorService.deleteAuthor(authorId)
-      res.json(deleteAuthor)
+      res.json({deleteAuthor})
     } catch (error) {
       next(error)
     }

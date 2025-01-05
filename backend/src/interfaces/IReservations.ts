@@ -1,6 +1,6 @@
 import { Reservation } from "@prisma/client"
 
-export type StatusReservations = "Ativo" | "Finalizado" | "Atrasado"
+export type StatusReservations = "Active" | "Finished" | "Overdue"
 
 export interface IReservation {
   id: number,
@@ -17,14 +17,13 @@ export interface ICreateReservation {
 
 export interface IUpdateReservation {
   returnAt?: Date,
-  status?: StatusReservations,
   userId?: number,
 }
 
-export interface IReseationsRepository {
+export interface IResevationsRepository {
   find: () => Promise<Reservation[]>
   findById: (id: number) => Promise<Reservation | null>
   create: (attributes: ICreateReservation) => Promise<Reservation>
-  updateById: (id: number, attributes: Partial<ICreateReservation>) => Promise<Reservation | null>
+  updateById: (id: number, attributes: Partial<IUpdateReservation>) => Promise<Reservation | null>
   deleteById: (id: number) => Promise<Reservation | null>
 }

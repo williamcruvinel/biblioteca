@@ -28,7 +28,7 @@ export interface IUserRepository {
   find: () => Promise<User[]>
   findById: (id: number) => Promise<User | null>
   create: (attributes: ICreateUser) => Promise<User>
-  updateById: (id: number, attributes: Partial<ICreateUser>) => Promise<User | null>
+  updateById: (id: number, attributes: Partial<IUpdateUser>) => Promise<User | null>
   deleteById: (id: number) => Promise<User | null>
   
   addReservation:(userId: number, reservationId: number) => Promise<User>

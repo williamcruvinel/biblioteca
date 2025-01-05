@@ -16,12 +16,6 @@ export class UserRepository implements IUserRepository {
             books:{
               select:{
                 title: true,
-                author:{
-                  select:{
-                    name: true
-                  }
-                },
-                status:true,
                 reserve:{
                   select:{
                     reservedAt: true,
