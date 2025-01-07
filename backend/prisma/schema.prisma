@@ -38,7 +38,7 @@ model Reservation {
   status     StatusReservations @default(Active)
   userId     Int
   user       User               @relation(fields: [userId], references: [id])
-  books      Book[]
+  books      Book[]             
 
   @@map("reservations")
 }

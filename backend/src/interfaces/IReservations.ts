@@ -26,4 +26,7 @@ export interface IResevationsRepository {
   create: (attributes: ICreateReservation) => Promise<Reservation>
   updateById: (id: number, attributes: Partial<IUpdateReservation>) => Promise<Reservation | null>
   deleteById: (id: number) => Promise<Reservation | null>
+
+  addBook:(bookId: number, reservationId: number) => Promise<Reservation | null> 
+  removeBook:(bookId: number, reservationId: number) => Promise<Reservation | null>
 }

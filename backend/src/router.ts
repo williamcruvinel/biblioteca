@@ -27,6 +27,9 @@ router.post("/reservations", reservationController.create)
 router.put("/reservations/:id", reservationController.update)
 router.delete("/reservations/:id", reservationController.delete)
 
+router.put("/reservations/:reservationId/add/books/:bookId", reservationController.addBooks)
+router.put("/reservations/:reservationId/remove/books/:bookId", reservationController.removeBooks)
+
 //rota de teste
 router.get("/status", async (req, res, next) => {
   try {

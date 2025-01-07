@@ -19,11 +19,6 @@ export const GetBooksSchemas = z.object({
   status: z.enum(["Available", "Reserved"]).optional(),
   authorId: z.number().optional(),
   reserveId: z.number().optional(),
-
-   // page: z.string().optional(),
-  // pageSize: z.string().optional(),
-  // sortBy: z.enum(["name", "status", "createdAt"]).optional(), // Ordenar por
-  // order: z.enum(["asc", "desc"]).optional()
 })
 
 export const UpdateBookSchemas = z.object({

@@ -28,5 +28,5 @@ export const authorController = new AuthorController(authorService)
 
 // Containers Reservaatios
 export const reservationRepository = new ReservationRepository()
-export const reservationService = new ReservationService(reservationRepository)
+export const reservationService = new ReservationService(reservationRepository, bookReposittory)
 export const reservationController = new ReservationController(reservationService)

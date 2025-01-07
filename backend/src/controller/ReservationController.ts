@@ -54,4 +54,28 @@ export class ReservationController{
       next(error)
     }
   }
+
+  addBooks: Handler = async ( req, res, next) => {
+    try {
+      const reservationId = +req.params.reservationId
+      const bookId = +req.params.bookId
+      const reservationWithBook = await this.reservationService.addBookToReservation(bookId, reservationId)
+      
+      res.json(reservationWithBook)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  removeBooks: Handler = async ( req, res, next) => {
+    try {
+      const reservationId = +req.params.reservationId
+      const bookId = +req.params.bookId
+      const reservationWithBook = await this.reservationService.removeBookToReservation(bookId, reservationId)
+      
+      res.json(reservationWithBook)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

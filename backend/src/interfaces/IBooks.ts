@@ -1,4 +1,4 @@
-import { Author, Book, Reservation } from "@prisma/client";
+import { Book } from "@prisma/client";
 
 export type BookStatus = "Available" | "Reserved"
 
@@ -40,10 +40,4 @@ export interface IBookRepository {
   updateById: (id: number, attributes: Partial<ICreateBook>) => Promise<Book | null>
   deleteById: (id: number) => Promise<Book | null>
   findByTitle: (title: string) => Promise<Book | null>
-
-  // addReservation:(userId: number, reservationId: number) => Promise<Reservation>
-  // removeReservation:(userId: number, reservationId: number) => Promise<Reservation>
-  
-  // addAuthor:(userId: number, reservationId: number) => Promise<Author>
-  // removeAuthor:(userId: number, reservationId: number) => Promise<Author>
 }

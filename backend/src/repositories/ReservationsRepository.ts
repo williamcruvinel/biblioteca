@@ -37,7 +37,7 @@ export class ReservationRepository implements IResevationsRepository {
 
   async create(attributes: ICreateReservation): Promise<Reservation> {
     return prisma.reservation.create({
-       data: attributes
+       data: attributes,
     })
   }
 
@@ -51,6 +51,38 @@ export class ReservationRepository implements IResevationsRepository {
   async deleteById(id: number): Promise<Reservation | null> {
     return prisma.reservation.delete({
       where:{id}
+    })
+  }
+
+  async addBook(bookId: number, reservationId: number): Promise<Reservation | null> {
+    await prisma.book.update({
+      where: {id: bookId},
+      data:{
+        reserveId: reservationId
+      }
+    })
+    
+    return await prisma.reservation.findUnique({
+      where:{id: reservationId}, 
+      include: {
+        books: true
+      }
+    })
+  }
+
+  async removeBook(bookId: number, reservationId: number): Promise<Reservation | null> {
+    await prisma.book.update({
+      where: {id: bookId},
+      data:{
+        reserveId: null
+      }
+    })
+    
+    return await prisma.reservation.findUnique({
+      where:{id: reservationId}, 
+      include: {
+        books: true
+      }
     })
   }
 }
